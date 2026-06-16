@@ -62,22 +62,24 @@ function startGame() {
 
 function showStep() {
   const stepData = questions[currentStep];
-  stepCounter.textContent = Вопрос ${currentStep + 1} из ${questions.length};
-  questText.textContent = stepData.text;
+  if (stepCounter) stepCounter.textContent = `Вопрос ${currentStep + 1} из ${questions.length}`;
+  if (questText) questText.textContent = stepData.text;
 
-  const progressPercent = ((currentStep) / questions.length) * 100;
-  progressBar.style.width = ${progressPercent}%;
+  if (progressBar) {
+    const progressPercent = (currentStep / questions.length) * 100;
+    progressBar.style.width = `${progressPercent}%`;
+  }
 
-  optionsContainer.innerHTML = "";
-
-  stepData.options.forEach(option => {
-    const btn = document.
-[16.06.2026 23:11] .: createElement("button");
-    btn.className = "btn btn-option";
-    btn.textContent = option.text;
-    btn.onclick = () => handleAnswer(option);
-    optionsContainer.appendChild(btn);
-  });
+  if (optionsContainer) {
+    optionsContainer.innerHTML = "";
+    stepData.options.forEach(option => {
+      const btn = document.createElement("button");
+      btn.className = "btn btn-option";
+      btn.textContent = option.text;
+      btn.onclick = () => handleAnswer(option);
+      optionsContainer.appendChild(btn);
+    });
+  }
 }
 
 function handleAnswer(option) {
@@ -94,23 +96,30 @@ function handleAnswer(option) {
 }
 
 function showGameOver(loseMessage) {
-  optionsContainer.innerHTML = "";
-  progressBar.style.width = "0%";
-  stepCounter.textContent = "ВЫ ПРОИГРАЛИ";
-  questText.textContent = loseMessage;
-  startBtn.textContent = "Попробовать заново";
-  startBtn.style.display = "inline-block";
+  if (optionsContainer) optionsContainer.innerHTML = "";
+  if (progressBar) progressBar.style.width = "0%";
+  if (stepCounter) stepCounter.textContent = "ВЫ ПРОИГРАЛИ";
+  if (questText) questText.textContent = loseMessage;
+  if (startBtn) {
+    startBtn.textContent = "Попробовать заново";
+    startBtn.style.display = "inline-block";
+  }
 }
 
 function showVictory() {
-  optionsContainer.innerHTML = "";
-  progressBar.style.width = "100%";
-  stepCounter.textContent = "ПОБЕДА!";
-  questText.innerHTML = "🎉 Поздравляем! Ты успешно преодолел все испытания, защитил свой финальный IT-проект и стал настоящим победителем! <br><br><strong>Игра пройдена на 100%!</strong>";
-  startBtn.textContent = "Играть еще раз";
-  startBtn.style.display = "inline-block";
+  if (optionsContainer) optionsContainer.innerHTML = "";
+  if (progressBar) progressBar.style.width = "100%";
+  if (stepCounter) stepCounter.textContent = "ПОБЕДА!";
+  if (questText) questText.innerHTML = "🎉 Поздравляем! Ты успешно преодолел все испытания, защитил свой финальный IT-проект и стал настоящим победителем! <br><br><strong>Игра пройдена на 100%!</strong>";
+  if (startBtn) {
+    startBtn.textContent = "Играть еще раз";
+    startBtn.style.display = "inline-block";
+  }
 }
 
-if (startBtn) {
-  startBtn.onclick = startGame;
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("actionBtn");
+  if (btn) {
+    btn.onclick = startGame;
+  }
+});
