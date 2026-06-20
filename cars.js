@@ -1,43 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Car View</title>
-<link rel="stylesheet" href="style.css">
-</head>
+const cars=[
+{
+id:"bmw_m5",
+brand:"BMW",
+name:"BMW M5",
+price:65000,
+mileage:58000,
+year:2020,
+engine:"4.4 V8",
+transmission:"Auto",
+country:"Germany",
+city:"Munich",
+condition:"used",
+img:"https://upload.wikimedia.org/wikipedia/commons/6/6b/2019_BMW_M5.jpg"
+},
 
-<body>
+{
+id:"audi_rs6",
+brand:"Audi",
+name:"Audi RS6",
+price:90000,
+mileage:35000,
+year:2021,
+engine:"4.0 V8",
+transmission:"Auto",
+country:"Germany",
+city:"Berlin",
+condition:"used",
+img:"https://upload.wikimedia.org/wikipedia/commons/4/4e/Audi_RS6.jpg"
+},
 
-<header>🚗 CAR DETAILS</header>
+{
+id:"toyota_camry",
+brand:"Toyota",
+name:"Toyota Camry",
+price:28000,
+mileage:60000,
+year:2019,
+engine:"2.5 I4",
+transmission:"Auto",
+country:"Japan",
+city:"Tokyo",
+condition:"used",
+img:"https://upload.wikimedia.org/wikipedia/commons/9/9b/Toyota_Camry.jpg"
+},
 
-<div class="carView">
+{
+id:"honda_civic",
+brand:"Honda",
+name:"Honda Civic",
+price:24000,
+mileage:50000,
+year:2020,
+engine:"1.5 Turbo",
+transmission:"Auto",
+country:"Japan",
+city:"Osaka",
+condition:"used",
+img:"https://upload.wikimedia.org/wikipedia/commons/7/7e/Honda_Civic.jpg"
+},
 
-<img id="img" class="mainImg">
-
-<div id="info" class="info"></div>
-
-</div>
-
-<script src="cars.js"></script>
-
-<script>
-const id=new URLSearchParams(location.search).get("id");
-const car=cars.find(c=>c.id===id);
-
-document.getElementById("img").src=car.img;
-
-document.getElementById("info").innerHTML=`
-<h2>${car.name}</h2>
-<p>💰 Price: $${car.price}</p>
-<p>📊 Mileage: ${car.mileage} km</p>
-<p>📅 Year: ${car.year}</p>
-<p>⚙ Engine: ${car.engine}</p>
-<p>🔧 Transmission: ${car.transmission}</p>
-<p>📍 ${car.country}, ${car.city}</p>
-<p>🧾 Condition: ${car.condition}</p>
-`;
-
-</script>
-
-</body>
-</html>
+{
+id:"kia_k5",
+brand:"KIA",
+name:"KIA K5",
+price:23000,
+mileage:30000,
+year:2022,
+engine:"2.0",
+transmission:"Auto",
+country:"Korea",
+city:"Seoul",
+condition:"new",
+img:"https://upload.wikimedia.org/wikipedia/commons/1/1b/Kia_K5.jpg"
+}
+];
