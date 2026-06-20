@@ -1,14 +1,16 @@
-const servers = [
-    { name: "Server_Alpha", load: "45%" },
-    { name: "Server_Beta", load: "72%" },
-    { name: "Server_Gamma", load: "12%" }
-];
-
-const dash = document.getElementById('dashboard');
-dash.innerHTML = servers.map(s => `
-    <div class="server-card">
-        <h3>${s.name}</h3>
-        <p>Load: ${s.load}</p>
-        <div class="load-bar"><div class="load-fill" style="width: ${s.load}"></div></div>
-    </div>
-`).join('');
+function startAnalysis() {
+    const core = document.getElementById('brain-core');
+    core.style.borderColor = '#ff00ff';
+    core.style.boxShadow = '0 0 100px #ff00ff';
+    
+    let i = 0;
+    const interval = setInterval(() => {
+        if(i < neuralNodes.length) {
+            console.log(neuralNodes[i].signal);
+            alert(neuralNodes[i].signal); // Выведет сообщение на экран
+            i++;
+        } else {
+            clearInterval(interval);
+        }
+    }, 1500);
+}
