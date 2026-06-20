@@ -10,7 +10,7 @@ function startQuiz(n){
   load();
 }
 
-/* 🔀 перемешивание */
+/* 🔀 shuffle */
 function shuffle(arr){
   return arr.sort(() => Math.random() - 0.5);
 }
@@ -25,48 +25,45 @@ function load(){
   let ans = document.getElementById("answers");
   ans.innerHTML = "";
 
-  /* делаем варианты */
-  let options = q.a.map((text, index) => {
-    return { text, index };
-  });
-
-  options = shuffle(options);
-
   ans.style.display = "grid";
   ans.style.gridTemplateColumns = "1fr 1fr";
   ans.style.gap = "10px";
 
-  options.forEach(opt => {
+  /* 🔥 создаём правильный ответ как текст */
+  let correctAnswer = q.a[q.c];
+
+  /* 🔀 перемешиваем ВСЕ ответы */
+  let options = shuffle([...q.a]);
+
+  options.forEach(text => {
 
     let b = document.createElement("button");
-    b.textContent = opt.text;
-
-    /* отмечаем правильный */
-    b.dataset.correct = (opt.index === q.c);
+    b.textContent = text;
 
     b.onclick = () => {
 
-      if (answered) return;
+      if(answered) return;
       answered = true;
 
       let all = document.querySelectorAll("#answers button");
       all.forEach(x => x.disabled = true);
 
-      // правильный ответ
-      if (opt.index === q.c) {
+      /* ✔ правильный */
+      if(text === correctAnswer){
         b.style.background = "green";
-        b.innerHTML = "✔ " + opt.text;
+        b.innerHTML = "✔ " + text;
         score++;
-      } else {
-        // неправильный
+      }
+      /* ❌ неправильный */
+      else{
         b.style.background = "red";
-        b.innerHTML = "❌ " + opt.text;
+        b.innerHTML = "❌ " + text;
 
-        // показать правильный
+        /* показать правильный */
         all.forEach(btn => {
-          if (btn.dataset.correct === "true") {
+          if(btn.textContent === correctAnswer){
             btn.style.background = "green";
-            btn.innerHTML = "✔ " + btn.textContent;
+            btn.innerHTML = "✔ " + correctAnswer;
           }
         });
       }
@@ -83,9 +80,9 @@ function load(){
 
 function next(){
 
-  if (!answered) return;
+  if(!answered) return;
 
-  if (i < quiz.length - 1) {
+  if(i < quiz.length - 1){
     i++;
     load();
   } else {
