@@ -15,6 +15,16 @@ score=0;
 load();
 }
 
+/* 🔀 правильное перемешивание */
+function shuffle(array){
+let arr = [...array];
+for(let j = arr.length - 1; j > 0; j--){
+let k = Math.floor(Math.random() * (j + 1));
+[arr[j], arr[k]] = [arr[k], arr[j]];
+}
+return arr;
+}
+
 function load(){
 
 answered=false;
@@ -27,8 +37,15 @@ ans.innerHTML="";
 
 ans.style.display="grid";
 ans.style.gridTemplateColumns="1fr 1fr";
+ans.style.gap="10px";
 
-q.a.forEach((text,index)=>{
+/* правильный ответ текстом */
+let correct = q.a[q.c];
+
+/* перемешиваем ответы */
+let options = shuffle(q.a);
+
+options.forEach(text=>{
 
 let b=document.createElement("button");
 b.textContent=text;
@@ -41,13 +58,18 @@ answered=true;
 let all=document.querySelectorAll("#answers button");
 all.forEach(x=>x.disabled=true);
 
-if(index===q.c){
+if(text === correct){
 b.style.background="green";
 score++;
 }else{
 b.style.background="red";
 
-all[q.c].style.background="green";
+/* показать правильный */
+all.forEach(btn=>{
+if(btn.textContent === correct){
+btn.style.background="green";
+}
+});
 }
 
 update();
@@ -61,14 +83,13 @@ update();
 }
 
 function next(){
-
 if(!answered) return;
 
 if(i<quiz.length-1){
 i++;
 load();
 }else{
-document.getElementById("q").textContent="ТЕСТ ЗАВЕРШЁН";
+document.getElementById("q").textContent="ТЕСТ ЗАВЕРШЁН 🎉";
 document.getElementById("answers").innerHTML="";
 }
 }
