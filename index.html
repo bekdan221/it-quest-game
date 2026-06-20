@@ -4,27 +4,36 @@
   <meta charset="UTF-8">
   <title>BekdanAuto</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="animations.css">
 </head>
+
 <body>
 
 <header>
   <h1>🚗 BekdanAuto</h1>
-  <p>Премиальные автомобили</p>
+  <p>Премиальный автосалон</p>
 </header>
 
 <div class="filters">
-  <input id="search" placeholder="Поиск (BMW, Toyota...)">
-
+  <input id="search" placeholder="Поиск авто...">
   <select id="brand">
-    <option value="all">Все марки</option>
+    <option value="all">Все</option>
     <option value="BMW">BMW</option>
+    <option value="Audi">Audi</option>
+    <option value="Mercedes">Mercedes</option>
     <option value="Toyota">Toyota</option>
     <option value="Lexus">Lexus</option>
+    <option value="Porsche">Porsche</option>
+    <option value="Range Rover">Range Rover</option>
   </select>
 </div>
 
 <div id="catalog" class="catalog"></div>
 
+<script src="cars.js"></script>
 <script src="script.js"></script>
+<script src="ui.js"></script>
+<script src="particles.js"></script>
+
 </body>
 </html>
