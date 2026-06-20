@@ -1,61 +1,61 @@
-let quiz = [];
-let index = 0;
-let score = 0;
+let quiz=[];
+let i=0;
+let score=0;
 
 function startQuiz(n){
 quiz = quizzes[n];
-index = 0;
-score = 0;
+i=0;
+score=0;
 load();
 }
 
 function load(){
 
-let q = quiz[index];
+let q = quiz[i];
+document.getElementById("q").textContent = q.q;
 
-document.getElementById("question").textContent = q.q;
+let ans = document.getElementById("answers");
+ans.innerHTML="";
 
-let answers = document.getElementById("answers");
-answers.innerHTML = "";
+q.a.forEach((a,index)=>{
+let b=document.createElement("button");
+b.textContent=a;
 
-q.a.forEach((ans,i)=>{
-let b = document.createElement("button");
-b.textContent = ans;
-
-b.onclick = ()=>{
-if(i === q.c) score++;
-document.querySelectorAll("button").forEach(x=>x.disabled=true);
-updateScore();
+b.onclick=()=>{
+if(index===q.c) score++;
+disable();
+update();
 };
 
-answers.appendChild(b);
+ans.appendChild(b);
 });
 
-updateProgress();
-updateScore();
+progress();
+update();
+}
+
+function disable(){
+document.querySelectorAll("#answers button").forEach(b=>{
+b.disabled=true;
+});
 }
 
 function next(){
-index++;
-
-if(index >= quiz.length){
-document.getElementById("question").textContent =
-"Тест завершён!";
-
-document.getElementById("answers").innerHTML = "";
-
-return;
-}
-
+if(i<quiz.length-1){
+i++;
 load();
+}else{
+document.getElementById("q").textContent="ТЕСТ ЗАВЕРШЕН";
+document.getElementById("answers").innerHTML="";
+}
 }
 
-function updateScore(){
+function update(){
 document.getElementById("score").textContent =
 `Score: ${score} / ${quiz.length}`;
 }
 
-function updateProgress(){
-let p = (index / quiz.length) * 100;
-document.getElementById("progress-bar").style.width = p + "%";
+function progress(){
+let p=(i/quiz.length)*100;
+document.getElementById("bar").style.width=p+"%";
 }
