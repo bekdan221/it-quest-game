@@ -1,32 +1,34 @@
-let currentQ = 0;
-let score = 0;
+let current = 0, score = 0, activeData = [];
 
-function loadQuestion() {
-    const q = quizData[currentQ];
+function setCategory(cat) {
+    activeData = quizData.filter(item => item.cat === cat);
+    current = 0; score = 0;
+    document.getElementById('title-screen').style.display = 'none';
+    document.getElementById('quiz-screen').style.display = 'block';
+    render();
+}
+
+function render() {
+    const q = activeData[current];
     document.getElementById('question').innerText = q.q;
-    const options = document.getElementById('options');
-    options.innerHTML = '';
+    const box = document.getElementById('options');
+    box.innerHTML = '';
     
-    let answers = [...q.a].sort(() => Math.random() - 0.5);
-    
-    answers.forEach(opt => {
+    q.a.forEach((opt, i) => {
         const btn = document.createElement('button');
         btn.className = 'option-btn';
         btn.innerText = opt;
         btn.onclick = () => {
-            if (opt === q.correct) score++;
-            currentQ++;
-            if (currentQ < quizData.length) loadQuestion();
-            else showResult();
+            if (i === q.c) score++;
+            current++;
+            current < activeData.length ? render() : showResult();
         };
-        options.appendChild(btn);
+        box.appendChild(btn);
     });
-    document.getElementById('progress-bar').style.width = (currentQ / quizData.length * 100) + '%';
+    document.getElementById('progress-bar').style.width = (current / activeData.length * 100) + '%';
 }
 
 function showResult() {
-    let rank = score <= 1 ? "Новичок" : "Эксперт";
-    document.querySelector('.test-container').innerHTML = `<h1>Ранг: ${rank}</h1><p>Счет: ${score}</p>`;
+    let level = score > 15 ? "Эксперт" : "Новичок";
+    document.getElementById('quiz-screen').innerHTML = `<h1>Результат: ${score}/${activeData.length}</h1><p>Уровень: ${level}</p><button class="option-btn" onclick="location.reload()">На главную</button>`;
 }
-
-loadQuestion();
