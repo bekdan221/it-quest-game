@@ -2,26 +2,15 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BekdanAuto - Премиум Авто</title>
+    <title>System Pulse | Control Center</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="hero">
-        <h1>BekdanAuto</h1>
-        <p>Выбор лучших автомобилей для экспертов</p>
-    </header>
-    
-    <input type="text" id="search" placeholder="Поиск по модели..." onkeyup="renderCars()">
-    
-    <div class="filter-bar">
-        <button onclick="filterCategory('all')">Все</button>
-        <button onclick="filterCategory('suv')">Внедорожники</button>
-        <button onclick="filterCategory('sedan')">Седаны</button>
+    <div class="header">
+        <h1>SYSTEM PULSE</h1>
+        <p>STATUS: <span id="status">ONLINE</span></p>
     </div>
-
-    <div id="catalog" class="catalog"></div>
-
+    <div class="dashboard" id="dashboard"></div>
     <script src="main.js"></script>
 </body>
 </html>
