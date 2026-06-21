@@ -1,108 +1,46 @@
-let quiz = [];
-let i = 0;
-let score = 0;
-let answered = false;
+function register() {
+    let user = document.getElementById("username").value;
+    let pass = document.getElementById("password").value;
+    let msg = document.getElementById("msg");
 
-function startApp(){
-  document.getElementById("titleScreen").style.display = "none";
-  document.getElementById("game").style.display = "block";
+    // проверка: пароль 8 цифр
+    if (!/^\d{8}$/.test(pass)) {
+        msg.innerText = "❌ Пароль должен быть из 8 цифр!";
+        return;
+    }
+
+    if (user === "") {
+        msg.innerText = "❌ Введите никнейм!";
+        return;
+    }
+
+    // сохраняем
+    localStorage.setItem("user", user);
+    localStorage.setItem("pass", pass);
+
+    msg.innerText = "✅ Аккаунт создан!";
 }
 
-function startQuiz(n){
-  quiz = quizzes[n];
-  i = 0;
-  score = 0;
-  load();
-}
 
-/* 🔀 shuffle (Fisher-Yates — правильный) */
-function shuffle(arr){
-  let a = [...arr];
-  for(let i = a.length - 1; i > 0; i--){
-    let j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
+// ВХОД
+function login() {
+    let user = document.getElementById("loginUser").value;
+    let pass = document.getElementById("loginPass").value;
 
-function load(){
+    let savedUser = localStorage.getItem("user");
+    let savedPass = localStorage.getItem("pass");
 
-  answered = false;
+    let msg = document.getElementById("msg");
 
-  let q = quiz[i];
-  document.getElementById("q").textContent = q.q;
+    if (user !== savedUser) {
+        msg.innerText = "❌ Никнейм не верный!";
+        return;
+    }
 
-  let ans = document.getElementById("answers");
-  ans.innerHTML = "";
+    if (pass !== savedPass) {
+        msg.innerText = "❌ Пароль не верный!";
+        return;
+    }
 
-  ans.style.display = "grid";
-  ans.style.gridTemplateColumns = "1fr 1fr";
-  ans.style.gap = "10px";
-
-  /* 💡 ВАЖНО: фиксируем правильный ответ ТЕКСТОМ */
-  let correctAnswer = q.a[q.c];
-
-  /* 🔀 перемешиваем копию массива */
-  let options = shuffle(q.a);
-
-  options.forEach(text => {
-
-    let b = document.createElement("button");
-    b.textContent = text;
-
-    b.onclick = () => {
-
-      if(answered) return;
-      answered = true;
-
-      let all = document.querySelectorAll("#answers button");
-      all.forEach(x => x.disabled = true);
-
-      if(text === correctAnswer){
-        b.style.background = "green";
-        b.innerHTML = "✔ " + text;
-        score++;
-      } else {
-        b.style.background = "red";
-        b.innerHTML = "❌ " + text;
-
-        /* показать правильный */
-        all.forEach(btn => {
-          if(btn.textContent === correctAnswer){
-            btn.style.background = "green";
-            btn.innerHTML = "✔ " + correctAnswer;
-          }
-        });
-      }
-
-      update();
-    };
-
-    ans.appendChild(b);
-  });
-
-  progress();
-  update();
-}
-
-function next(){
-  if(!answered) return;
-
-  if(i < quiz.length - 1){
-    i++;
-    load();
-  } else {
-    document.getElementById("q").textContent = "ТЕСТ ЗАВЕРШЁН 🎉";
-    document.getElementById("answers").innerHTML = "";
-  }
-}
-
-function update(){
-  document.getElementById("score").textContent =
-    `Score: ${score} / ${quiz.length}`;
-}
-
-function progress(){
-  let p = (i / quiz.length) * 100;
-  document.getElementById("bar").style.width = p + "%";
+    msg.innerText = "✅ Успешный вход!";
 }
