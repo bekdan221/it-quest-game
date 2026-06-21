@@ -1,1 +1,3 @@
-console.log("Theme system ready");
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
