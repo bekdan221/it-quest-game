@@ -1,79 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Mega Quiz</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Login System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div id="titleScreen" class="title">
+<div class="box">
 
-  <div class="title-content">
+    <h2>Регистрация</h2>
 
-    <div class="left-side">
+    <input id="username" placeholder="Никнейм">
+    <input id="password" type="password" placeholder="Пароль (8 цифр)">
+    <button onclick="register()">Регистрация</button>
 
-      <div class="logo">🧠</div>
+    <hr>
 
-      <h1>МЕГА ТЕСТОВЫЙ ПРОЕКТ</h1>
-      <h2>MEGA QUIZ MASTER</h2>
+    <h2>Вход</h2>
 
-      <div class="author">
-        👤 Автор: <br>
-        <b>Темирбеков Бекдан Темирбекович</b>
-      </div>
+    <input id="loginUser" placeholder="Никнейм">
+    <input id="loginPass" type="password" placeholder="Пароль">
+    <button onclick="login()">Войти</button>
 
-      <button onclick="startApp()">Начать</button>
-
-    </div>
-
-    <div class="right-side">
-      <img src="qr-code.jpg" alt="QR-код" class="qr">
-    </div>
-
-  </div>
+    <p id="msg"></p>
 
 </div>
 
-<!-- 🎮 ИГРА -->
-<div id="game" style="display:none;">
-
-<header>MEGA QUIZ CHALLENGE</header>
-
-<div class="wrap">
-
-  <div class="progress">
-    <div id="bar"></div>
-  </div>
-
-  <div class="menu">
-    <button onclick="startQuiz(0)">🧠 IQ TEST</button>
-    <button onclick="startQuiz(1)">💻 IT TEST</button>
-    <button onclick="startQuiz(2)">🚗 CARS</button>
-    <button onclick="startQuiz(3)">🎮 GAMES</button>
-    <button onclick="startQuiz(4)">💼 BUSINESS</button>
-    <button onclick="startQuiz(5)">🌍 COUNTRIES</button>
-    <button onclick="startQuiz(6)">🇰🇬 KYRGYZSTAN</button>
-  </div>
-
-  <div class="box">
-
-    <h1 id="q">Выбери тест</h1>
-
-    <div id="answers"></div>
-
-    <button class="next" onclick="next()">ДАЛЕЕ</button>
-
-    <div id="score"></div>
-
-  </div>
-
-</div>
-
-</div>
-
-<script src="data.js"></script>
 <script src="app.js"></script>
 
 </body>
