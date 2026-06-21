@@ -2,49 +2,80 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Auth App</title>
+<title>Mega Quiz</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="container">
+<!-- 🟢 ТИТУЛЬНАЯ СТРАНИЦА -->
+<div id="titleScreen" class="title">
 
-  <!-- ТАБЫ -->
-  <div class="tabs">
-    <button class="tab active" onclick="showTab('signup')">Sign Up</button>
-    <button class="tab" onclick="showTab('signin')">Sign In</button>
+  <div class="title-content">
+
+    <div class="left-side">
+
+      <div class="logo">🧠</div>
+
+      <h1>МЕГА ТЕСТОВЫЙ ПРОЕКТ</h1>
+      <h2>MEGA QUIZ MASTER</h2>
+
+      <div class="author">
+        👤 Автор: <br>
+        <b>Темирбеков Бекдан Темирбекович</b>
+      </div>
+
+      <button onclick="startApp()">Начать</button>
+
+    </div>
+
+    <div class="right-side">
+      <img src="qr-code.jpg" alt="QR-код" class="qr">
+    </div>
+
   </div>
-
-  <!-- SIGN UP -->
-  <div id="signup" class="form active">
-    <h2>Sign Up</h2>
-
-    <input id="su_user" placeholder="Nickname">
-    <input id="su_pass" type="password" placeholder="Password (8 digits)">
-
-    <button onclick="register()">Create Account</button>
-  </div>
-
-  <!-- SIGN IN -->
-  <div id="signin" class="form">
-    <h2>Sign In</h2>
-
-    <input id="si_user" placeholder="Nickname">
-    <input id="si_pass" type="password" placeholder="Password">
-
-    <button onclick="login()">Login</button>
-  </div>
-
-  <p id="msg"></p>
 
 </div>
 
-<!-- МЕНЮ (после входа) -->
-<div id="menu" class="menu hidden">
-  <h1>🎉 Welcome to your project!</h1>
-  <p>Ты вошёл в систему</p>
+<!-- 🎮 ИГРА -->
+<div id="game" style="display:none;">
+
+<header>MEGA QUIZ CHALLENGE</header>
+
+<div class="wrap">
+
+  <div class="progress">
+    <div id="bar"></div>
+  </div>
+
+  <div class="menu">
+    <button onclick="startQuiz(0)">🧠 IQ TEST</button>
+    <button onclick="startQuiz(1)">💻 IT TEST</button>
+    <button onclick="startQuiz(2)">🚗 CARS</button>
+    <button onclick="startQuiz(3)">🎮 GAMES</button>
+    <button onclick="startQuiz(4)">💼 BUSINESS</button>
+    <button onclick="startQuiz(5)">🌍 COUNTRIES</button>
+    <button onclick="startQuiz(6)">🇰🇬 KYRGYZSTAN</button>
+  </div>
+
+  <div class="box">
+
+    <h1 id="q">Выбери тест</h1>
+
+    <div id="answers"></div>
+
+    <button class="next" onclick="next()">ДАЛЕЕ</button>
+
+    <div id="score"></div>
+
+  </div>
+
 </div>
 
+</div>
+
+<script src="data.js"></script>
 <script src="app.js"></script>
+
 </body>
 </html>
