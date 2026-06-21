@@ -1,74 +1,172 @@
-body {
-    font-family: Arial;
-    background: #111;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#1e3c72,#2a5298,#6a11cb);
+background-size:400% 400%;
+animation:bg 10s infinite;
+color:white;
 }
 
-.container {
-    background: #222;
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    text-align: center;
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
+/* HEADER */
+header{
+text-align:center;
+font-size:28px;
+padding:20px;
+font-weight:bold;
 }
 
-.tab {
-    width: 50%;
-    padding: 10px;
-    background: #333;
-    border: none;
-    color: white;
-    cursor: pointer;
+/* WRAP */
+.wrap{
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
-.tab.active {
-    background: #00aaff;
+/* PROGRESS */
+.progress{
+width:60%;
+height:10px;
+background:rgba(255,255,255,0.2);
+border-radius:10px;
+overflow:hidden;
+margin-bottom:15px;
 }
 
-.form {
-    display: none;
+#bar{
+height:100%;
+width:0%;
+background:lime;
+transition:0.3s;
 }
 
-.form.active {
-    display: block;
+/* MENU */
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-bottom:20px;
 }
 
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 5px 0;
+.menu button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:rgba(255,255,255,0.2);
+color:white;
+font-weight:bold;
 }
 
-button {
-    width: 95%;
-    padding: 10px;
-    background: #00aaff;
-    border: none;
-    color: white;
-    cursor: pointer;
+/* BOX */
+.box{
+width:60%;
+text-align:center;
+background:rgba(0,0,0,0.3);
+padding:30px;
+border-radius:20px;
 }
 
-#msg {
-    margin-top: 10px;
-    color: yellow;
+/* ANSWERS GRID */
+#answers button{
+width:100%;
+padding:10px;
+margin:5px;
+border:none;
+border-radius:10px;
+cursor:pointer;
 }
 
-/* меню после входа */
-.menu {
-    text-align: center;
+/* NEXT */
+.next{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+border-radius:10px;
+background:gold;
+cursor:pointer;
 }
 
-.hidden {
-    display: none;
+/* SCORE */
+#score{
+margin-top:10px;
+}
+
+/* 🟢 ТИТУЛЬНАЯ */
+.title{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+}
+
+.title-content{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:50px;
+}
+
+.left-side{
+text-align:center;
+}
+
+.title .logo{
+font-size:80px;
+}
+
+.title h1{
+font-size:40px;
+}
+
+.title h2{
+font-size:18px;
+opacity:0.8;
+}
+
+.author{
+margin-top:20px;
+font-size:18px;
+}
+
+.title button{
+margin-top:30px;
+padding:12px 25px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* QR-КОД */
+.qr{
+width:220px;
+height:auto;
+border-radius:20px;
+box-shadow:0 0 20px rgba(255,255,255,0.3);
+}
+
+/* МОБИЛЬНАЯ ВЕРСИЯ */
+@media(max-width:768px){
+
+.title-content{
+flex-direction:column;
+gap:20px;
+}
+
+.qr{
+width:180px;
+}
+
+.title h1{
+font-size:28px;
+}
+
 }
